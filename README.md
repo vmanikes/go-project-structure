@@ -1,4 +1,4 @@
 # go-project-structure
 Ideal project structure for Golang based applications to build scalable software
 
-## Read the wiki here
+## [Enter Here](https://github.com/vmanikes/go-project-structure/wiki)
