@@ -11,11 +11,38 @@ with DDD boundaries so your app stays extensible, testable, and ready for change
 ## Use it as an agent skill
 
 The conventions are packaged as an [Agent Skill](https://www.skills.sh/) so your AI coding agent
-scaffolds and extends services in this layout automatically:
+scaffolds and extends services in this layout automatically. The CLI auto-detects the agents you
+have installed:
 
 ```bash
-npx skills add vmanikes/go-project-structure
+npx skills add vmanikes/go-project-structure          # install into detected agent(s), project-local
+npx skills add vmanikes/go-project-structure -g       # install globally (all your repos)
 ```
+
+Target specific agents with `-a` (repeatable) — otherwise the CLI prompts you to pick:
+
+```bash
+npx skills add vmanikes/go-project-structure -a claude-code            # Claude Code
+npx skills add vmanikes/go-project-structure -a cursor                 # Cursor
+npx skills add vmanikes/go-project-structure -a claude-code -a cursor  # several at once
+```
+
+Supported agents include Claude Code, Cursor, GitHub Copilot, and Windsurf. If you're unsure of an
+agent's exact `-a` name, just run `npx skills add vmanikes/go-project-structure` with no `-a` and
+select from the interactive list. Where it lands per agent (project-local; add `-g` for the global
+path):
+
+| Agent | Project path | Global path |
+|---|---|---|
+| Claude Code | `.claude/skills/` | `~/.claude/skills/` |
+| Cursor | `.agents/skills/` | `~/.cursor/skills/` |
+| GitHub Copilot | `.agents/skills/` | `~/.copilot/skills/` |
+| Windsurf | `.windsurf/skills/` | `~/.codeium/windsurf/skills/` |
+
+Once installed, ask your agent something like *"add a `payments` domain"* or *"scaffold a new Go
+service"* and it will follow this layout. Handy follow-ups: `npx skills list` (see what's
+installed), `npx skills update` (pull the latest), `npx skills remove` (uninstall). To try it
+without installing: `npx skills use vmanikes/go-project-structure`.
 
 ## Layout
 
